@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: 'Helvetica Neue', sans-serif;
-  background: #fdfdfb;
-  color: #222;
+  background: #f6f5f3; /* 莫兰迪米灰 */
+  color: #34333a;       /* 莫兰迪深灰 */
   line-height: 1.6;
 }
 
@@ -16,8 +16,8 @@ body {
 
 /* 顶部横幅样式 */
 .hero {
-  background: linear-gradient(to right, #009c3b, #ffcc29);
-  color: white;
+  background: linear-gradient(to right, #b7b6c8, #c2c5aa); /* 莫兰迪紫灰到莫兰迪灰绿 */
+  color: #fff;
   text-align: center;
   padding: 80px 20px;
 }
@@ -30,11 +30,12 @@ body {
 .hero h2 {
   font-size: 1.5em;
   font-weight: 400;
+  color: #e0e1dd;
 }
 
 /* 服务列表样式 */
 .services {
-  background: #ffffff;
+  background: #f0eeeb; /* 莫兰迪浅灰米 */
   text-align: left;
   padding: 60px 20px;
 }
@@ -43,6 +44,7 @@ body {
   text-align: center;
   font-size: 2em;
   margin-bottom: 1em;
+  color: #8c8c94; /* 莫兰迪灰紫 */
 }
 
 .services ul {
@@ -53,13 +55,14 @@ body {
 .services li {
   font-size: 1.2em;
   margin: 1em 0;
-  border-left: 4px solid #009c3b;
+  border-left: 4px solid #a3b18a; /* 莫兰迪灰绿 */
   padding-left: 10px;
+  color: #585860;
 }
 
 /* 联系我们样式 */
 .contact {
-  background: #eee;
+  background: #e9ecef; /* 莫兰迪淡灰蓝 */
   text-align: center;
   padding: 60px 20px;
 }
@@ -67,12 +70,13 @@ body {
 .contact h2 {
   font-size: 2em;
   margin-bottom: 0.5em;
+  color: #8797af; /* 莫兰迪灰蓝 */
 }
 
 /* 页脚样式 */
 .footer {
-  background: #222;
-  color: #ccc;
+  background: #6d6875; /* 莫兰迪深紫灰 */
+  color: #e3e3e3;
   text-align: center;
   padding: 20px 0;
   font-size: 0.9em;
@@ -88,8 +92,8 @@ body {
   margin-left: 5px;
   padding: 6px 12px;
   border: none;
-  background: #009c3b;
-  color: white;
+  background: #a3b18a; /* 莫兰迪灰绿 */
+  color: #fff;
   cursor: pointer;
   border-radius: 4px;
   font-size: 0.9em;
@@ -97,12 +101,12 @@ body {
 }
 
 .lang-switcher button:hover {
-  background: #007d30;
+  background: #87986a; /* 深一点的莫兰迪灰绿 */
 }
 
 /* 顶部导航栏 */
 .navbar {
-  background-color: white;
+  background-color: #f6f5f3;
   border-bottom: 1px solid #e0e0e0;
   position: sticky;
   top: 0;
@@ -119,7 +123,7 @@ body {
 .logo {
   font-size: 1.5em;
   font-weight: bold;
-  color: #009c3b;
+  color: #b7b6c8; /* 莫兰迪紫灰 */
 }
 
 .nav-links {
@@ -130,12 +134,11 @@ body {
 
 .nav-links li a {
   text-decoration: none;
-  color: #222;
+  color: #34333a;
   font-weight: 500;
   transition: color 0.3s;
 }
 
 .nav-links li a:hover {
-  color: #009c3b;
+  color: #b7b6c8;
 }
-
