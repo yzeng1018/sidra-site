@@ -99,3 +99,43 @@ body {
 .lang-switcher button:hover {
   background: #007d30;
 }
+
+/* 顶部导航栏 */
+.navbar {
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #009c3b;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #009c3b;
+}
+
