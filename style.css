@@ -1,120 +1,79 @@
-{\rtf1\ansi\ansicpg936\cocoartf2822
-\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
-{\colortbl;\red255\green255\blue255;}
-{\*\expandedcolortbl;;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
-\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+/* 通用基础样式 */
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  background: #fdfdfb;
+  color: #222;
+  line-height: 1.6;
+}
 
-\f0\fs24 \cf0 /* Reset */\
-* \{\
-  margin: 0;\
-  padding: 0;\
-  box-sizing: border-box;\
-\}\
-\
-/* \uc0\u20027 \u39064 \u33394 \u35843  */\
-:root \{\
-  --primary: #f4b400; /* \uc0\u38451 \u20809 \u37329 \u33394  */\
-  --secondary: #00875f; /* \uc0\u24052 \u35199 \u32511 \u33394  */\
-  --text-dark: #333;\
-  --text-light: #fff;\
-  --bg-light: #fffef9;\
-\}\
-\
-/* \uc0\u20840 \u23616 \u26679 \u24335  */\
-body \{\
-  font-family: 'Helvetica Neue', sans-serif;\
-  background-color: var(--bg-light);\
-  color: var(--text-dark);\
-  line-height: 1.6;\
-\}\
-\
-/* \uc0\u23481 \u22120  */\
-.container \{\
-  width: 90%;\
-  max-width: 960px;\
-  margin: 0 auto;\
-  padding: 2rem 0;\
-\}\
-\
-/* \uc0\u39030 \u37096  Hero */\
-.hero \{\
-  background: linear-gradient(to right, var(--primary), #ffe082);\
-  text-align: center;\
-  padding: 4rem 2rem;\
-  color: var(--text-dark);\
-\}\
-\
-.hero h1 \{\
-  font-size: 3rem;\
-  margin-bottom: 1rem;\
-\}\
-\
-.hero p \{\
-  font-size: 1.25rem;\
-  margin-bottom: 2rem;\
-\}\
-\
-.cta-button \{\
-  background-color: var(--secondary);\
-  color: var(--text-light);\
-  padding: 0.75rem 1.5rem;\
-  border: none;\
-  border-radius: 50px;\
-  text-decoration: none;\
-  font-weight: bold;\
-  transition: background-color 0.3s;\
-\}\
-\
-.cta-button:hover \{\
-  background-color: #00664b;\
-\}\
-\
-/* \uc0\u26381 \u21153  */\
-.services \{\
-  background-color: #fafafa;\
-  padding: 3rem 2rem;\
-\}\
-\
-.services h2 \{\
-  text-align: center;\
-  color: var(--secondary);\
-  margin-bottom: 1rem;\
-\}\
-\
-.services ul \{\
-  list-style: none;\
-  padding-left: 0;\
-  text-align: center;\
-\}\
-\
-.services li \{\
-  margin-bottom: 0.75rem;\
-  font-size: 1.1rem;\
-\}\
-\
-/* \uc0\u32852 \u31995 \u26041 \u24335  */\
-.contact \{\
-  background-color: #fff;\
-  padding: 3rem 2rem;\
-\}\
-\
-.contact h2 \{\
-  color: var(--primary);\
-  text-align: center;\
-  margin-bottom: 1rem;\
-\}\
-\
-.contact p \{\
-  text-align: center;\
-\}\
-\
-/* \uc0\u39029 \u33050  */\
-.footer \{\
-  background-color: var(--secondary);\
-  color: var(--text-light);\
-  text-align: center;\
-  padding: 1.5rem 0;\
-  font-size: 0.9rem;\
-\}\
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+/* 顶部横幅样式 */
+.hero {
+  background: linear-gradient(to right, #009c3b, #ffcc29);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 3em;
+  margin: 0.3em 0;
+}
+
+.hero h2 {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+/* 服务列表样式 */
+.services {
+  background: #ffffff;
+  text-align: left;
+  padding: 60px 20px;
+}
+
+.services h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+.services ul {
+  list-style: none;
+  padding: 0;
+}
+
+.services li {
+  font-size: 1.2em;
+  margin: 1em 0;
+  border-left: 4px solid #009c3b;
+  padding-left: 10px;
+}
+
+/* 联系我们样式 */
+.contact {
+  background: #eee;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.contact h2 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+/* 页脚样式 */
+.footer {
+  background: #222;
+  color: #ccc;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.9em;
 }
