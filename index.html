@@ -2,42 +2,57 @@
 <html lang="pt">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sidra - Agência de Publicidade / 广告代理</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="lang-switcher">
+    <button onclick="switchLanguage('pt')">🇧🇷 Português</button>
+    <button onclick="switchLanguage('zh')">🇨🇳 中文</button>
+  </div>
+
   <header class="hero">
     <div class="container">
-      <h1>Sidra - Agência de Publicidade</h1>
-      <h2>连接中国品牌，赢在巴西市场</h2>
-      <p>Conectamos marcas chinesas ao mercado brasileiro com precisão e criatividade.</p>
+      <h1 data-pt="Sidra - Agência de Publicidade" data-zh="Sidra - 广告代理">Sidra - Agência de Publicidade</h1>
+      <h2 data-pt="Conectamos marcas chinesas ao mercado brasileiro" data-zh="连接中国品牌，赢在巴西市场">Conectamos marcas chinesas ao mercado brasileiro</h2>
     </div>
   </header>
 
   <section class="services">
     <div class="container">
-      <h2>服务 / Serviços</h2>
+      <h2 data-pt="Serviços" data-zh="服务">Serviços</h2>
       <ul>
-        <li>🌐 Google 和 Meta 效果广告投放, AI赋能<br/>Anúncios de performance no Google e Meta</li>
-        <li>🎯 精准定位巴西用户画像，指哪打哪<br/>Segmentação de público brasileiro</li>
-        <li>🎨 广告创意制作，深耕本地<br/>Criação de criativos publicitários localizados</li>
-        <li>📈 数据分析与持续优化，成本可控<br/>Análise de dados e otimização contínua</li>
+        <li data-pt="Anúncios de performance no Google e Meta" data-zh="Google 和 Meta 效果广告投放">Anúncios de performance no Google e Meta</li>
+        <li data-pt="Segmentação de público brasileiro" data-zh="精准定位巴西用户画像">Segmentação de público brasileiro</li>
+        <li data-pt="Criação de criativos localizados" data-zh="本地化广告创意制作">Criação de criativos localizados</li>
+        <li data-pt="Análise de dados e otimização contínua" data-zh="数据分析与持续优化">Análise de dados e otimização contínua</li>
       </ul>
     </div>
   </section>
 
   <section class="contact">
     <div class="container">
-      <h2>联系我们 / Fale Conosco</h2>
-      <p>Email: samuel295@163.com | 微信/WeChat: SidraAds</p>
+      <h2 data-pt="Fale Conosco" data-zh="联系我们">Fale Conosco</h2>
+      <p>Email: contato@sidraads.com | 微信/WeChat: SidraAds</p>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <p>© 2025 Sidra Ads. Todos os direitos reservados. 版权所有</p>
+      <p data-pt="© 2025 Sidra Ads. Todos os direitos reservados." data-zh="© 2025 Sidra Ads 版权所有">© 2025 Sidra Ads. Todos os direitos reservados.</p>
     </div>
   </footer>
+
+  <script>
+    function switchLanguage(lang) {
+      const elements = document.querySelectorAll('[data-pt]');
+      elements.forEach(el => {
+        el.textContent = el.getAttribute(`data-${lang}`);
+      });
+    }
+
+    // 默认语言（可改为 'zh'）
+    switchLanguage('pt');
+  </script>
 </body>
 </html>
