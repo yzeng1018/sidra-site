@@ -1,3 +1,83 @@
+/* 通用基础样式 */
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  background: #fdfdfb;
+  color: #222;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+/* 顶部横幅样式 */
+.hero {
+  background: linear-gradient(to right, #009c3b, #ffcc29);
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero h1 {
+  font-size: 3em;
+  margin: 0.3em 0;
+}
+
+.hero h2 {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+/* 服务列表样式 */
+.services {
+  background: #ffffff;
+  text-align: left;
+  padding: 60px 20px;
+}
+
+.services h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+.services ul {
+  list-style: none;
+  padding: 0;
+}
+
+.services li {
+  font-size: 1.2em;
+  margin: 1em 0;
+  border-left: 4px solid #009c3b;
+  padding-left: 10px;
+}
+
+/* 联系我们样式 */
+.contact {
+  background: #eee;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.contact h2 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+/* 页脚样式 */
+.footer {
+  background: #222;
+  color: #ccc;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.9em;
+}
+
 .lang-switcher {
   position: absolute;
   top: 10px;
