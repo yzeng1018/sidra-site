@@ -1,9 +1,18 @@
-/* 通用基础样式 */
+/* 高级感国际广告代理主题配色 */
+:root {
+  --primary-color: #1B263B;
+  --accent-green: #27AE60;
+  --accent-gold: #FFD700;
+  --background-light: #F7F8FA;
+  --text-main: #232323;
+  --text-secondary: #7B7B7B;
+}
+
 body {
   margin: 0;
   font-family: 'Helvetica Neue', sans-serif;
-  background: #f6f5f3; /* 莫兰迪米灰 */
-  color: #34333a;       /* 莫兰迪深灰 */
+  background: var(--background-light);
+  color: var(--text-main);
   line-height: 1.6;
 }
 
@@ -16,7 +25,7 @@ body {
 
 /* 顶部横幅样式 */
 .hero {
-  background: linear-gradient(to right, #b7b6c8, #c2c5aa); /* 莫兰迪紫灰到莫兰迪灰绿 */
+  background: linear-gradient(to right, var(--primary-color), var(--accent-green));
   color: #fff;
   text-align: center;
   padding: 80px 20px;
@@ -30,12 +39,12 @@ body {
 .hero h2 {
   font-size: 1.5em;
   font-weight: 400;
-  color: #e0e1dd;
+  color: var(--accent-gold);
 }
 
 /* 服务列表样式 */
 .services {
-  background: #f0eeeb; /* 莫兰迪浅灰米 */
+  background: #fff;
   text-align: left;
   padding: 60px 20px;
 }
@@ -44,7 +53,7 @@ body {
   text-align: center;
   font-size: 2em;
   margin-bottom: 1em;
-  color: #8c8c94; /* 莫兰迪灰紫 */
+  color: var(--primary-color);
 }
 
 .services ul {
@@ -55,14 +64,14 @@ body {
 .services li {
   font-size: 1.2em;
   margin: 1em 0;
-  border-left: 4px solid #a3b18a; /* 莫兰迪灰绿 */
+  border-left: 4px solid var(--accent-green);
   padding-left: 10px;
-  color: #585860;
+  color: var(--text-secondary);
 }
 
 /* 联系我们样式 */
 .contact {
-  background: #e9ecef; /* 莫兰迪淡灰蓝 */
+  background: #F2F5F7;
   text-align: center;
   padding: 60px 20px;
 }
@@ -70,12 +79,12 @@ body {
 .contact h2 {
   font-size: 2em;
   margin-bottom: 0.5em;
-  color: #8797af; /* 莫兰迪灰蓝 */
+  color: var(--primary-color);
 }
 
 /* 页脚样式 */
 .footer {
-  background: #6d6875; /* 莫兰迪深紫灰 */
+  background: var(--primary-color);
   color: #e3e3e3;
   text-align: center;
   padding: 20px 0;
@@ -92,7 +101,7 @@ body {
   margin-left: 5px;
   padding: 6px 12px;
   border: none;
-  background: #a3b18a; /* 莫兰迪灰绿 */
+  background: var(--accent-green);
   color: #fff;
   cursor: pointer;
   border-radius: 4px;
@@ -101,12 +110,13 @@ body {
 }
 
 .lang-switcher button:hover {
-  background: #87986a; /* 深一点的莫兰迪灰绿 */
+  background: var(--accent-gold);
+  color: var(--primary-color);
 }
 
 /* 顶部导航栏 */
 .navbar {
-  background-color: #f6f5f3;
+  background-color: var(--background-light);
   border-bottom: 1px solid #e0e0e0;
   position: sticky;
   top: 0;
@@ -123,7 +133,7 @@ body {
 .logo {
   font-size: 1.5em;
   font-weight: bold;
-  color: #b7b6c8; /* 莫兰迪紫灰 */
+  color: var(--primary-color);
 }
 
 .nav-links {
@@ -134,11 +144,33 @@ body {
 
 .nav-links li a {
   text-decoration: none;
-  color: #34333a;
+  color: var(--primary-color);
   font-weight: 500;
   transition: color 0.3s;
 }
 
 .nav-links li a:hover {
-  color: #b7b6c8;
+  color: var(--accent-green);
+}
+
+/* 通用按钮和高亮 */
+.button, button {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 28px;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+}
+.button:hover, button:hover {
+  background: linear-gradient(90deg, var(--accent-green), var(--accent-gold));
+  color: var(--primary-color);
+}
+
+.badge, .highlight {
+  background: var(--accent-gold);
+  color: var(--primary-color);
+  border-radius: 4px;
+  padding: 2px 8px;
 }
