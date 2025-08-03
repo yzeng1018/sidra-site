@@ -174,3 +174,32 @@ body {
   border-radius: 4px;
   padding: 2px 8px;
 }
+
+<style>
+button {
+  padding: 8px 16px;
+  font-size: 16px;
+  margin: 16px 0;
+  cursor: pointer;
+}
+</style>
+
+#back-home {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #ff5722;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 9999;
+  transition: background 0.2s;
+}
+#back-home:hover {
+  background: #d84315;
+}
