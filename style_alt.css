@@ -1,1 +1,159 @@
 
+
+
+
+
+
+
+
+
+/* 更现代的字体 */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.container {
+  width: 90%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+
+
+
+.hero h2 {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+
+/* 标题精简且对齐 */
+.hero h1 {
+  font-size: 48px;
+  font-weight: 600;
+  color: #111;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* 简约的颜色背景 */
+.hero {
+  background: #f5f5f5;  /* 或者柔和渐变色 */
+  padding: 100px 20px;
+  text-align: center;
+}
+
+/* 服务列表样式 */
+.services {
+  background: #ffffff;
+  text-align: left;
+  padding: 60px 20px;
+}
+
+.services h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+.services ul {
+  list-style: none;
+  padding: 0;
+}
+
+.services li {
+  font-size: 1.2em;
+  margin: 1em 0;
+  border-left: 4px solid #009c3b;
+  padding-left: 10px;
+}
+
+/* 联系我们样式 */
+.contact {
+  background: #eee;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.contact h2 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+/* 页脚样式 */
+.footer {
+  background: #222;
+  color: #ccc;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.9em;
+}
+
+.lang-switcher {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.lang-switcher button {
+  margin-left: 5px;
+  padding: 6px 12px;
+  border: none;
+  background: #009c3b;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9em;
+  transition: background 0.3s;
+}
+
+.lang-switcher button:hover {
+  background: #007d30;
+}
+
+/* 顶部导航栏 */
+.navbar {
+  background-color: white;
+  border-bottom: 1px solid #e0e0e0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #009c3b;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links li a:hover {
+  color: #009c3b;
+}
+
+
+/* 插画样式 */
+.illustration {
+  max-width: 600px;
+  margin: 40px auto;
+}
+
