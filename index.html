@@ -1,60 +1,693 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <title>Sidra - Agência de Publicidade / 广告代理</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sidra · 命理双证</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Serif+SC:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #060810;
+      --surface: #0D1121;
+      --card: #111827;
+      --border: rgba(201,168,76,0.2);
+      --border-h: rgba(201,168,76,0.5);
+      --gold: #C9A84C;
+      --gold-l: #F0D48A;
+      --purple: #8B5CF6;
+      --purple-l: #A78BFA;
+      --text: #E8DCC8;
+      --dim: #8B8070;
+      --muted: #4B4640;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Serif SC', 'STSong', serif;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-image:
+        radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 10%, rgba(255,255,255,.2) 0%, transparent 100%),
+        radial-gradient(1px 1px at 80% 65%, rgba(255,255,255,.25) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 55%, rgba(255,255,255,.12) 0%, transparent 100%),
+        radial-gradient(1px 1px at 10% 75%, rgba(255,255,255,.18) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 70% 38%, rgba(201,168,76,.12) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 28% 18%, rgba(139,92,246,.08) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92% 20%, rgba(255,255,255,.15) 0%, transparent 100%),
+        radial-gradient(1px 1px at 5% 45%, rgba(255,255,255,.1) 0%, transparent 100%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .wrap { position: relative; z-index: 1; }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      position: relative;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 180px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .hero-sub {
+      font-size: .82rem;
+      color: var(--dim);
+      letter-spacing: .3em;
+      margin-bottom: 1.4em;
+    }
+    .hero-desc {
+      font-size: .95rem;
+      color: var(--dim);
+      font-weight: 300;
+      margin-bottom: 2em;
+      line-height: 2;
+    }
+    .hero-tags {
+      display: flex; gap: .75rem;
+      justify-content: center; flex-wrap: wrap;
+    }
+    .hero-tag {
+      padding: 3px 14px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: .75rem;
+      color: var(--dim);
+      letter-spacing: .05em;
+    }
+
+    /* FORM */
+    .form-section {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 48px 20px 64px;
+    }
+    .form-title {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--gold);
+      letter-spacing: .25em;
+      margin-bottom: 2rem;
+    }
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label {
+      display: block;
+      font-size: .8rem;
+      color: var(--dim);
+      letter-spacing: .1em;
+      margin-bottom: .45rem;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: .95rem;
+      outline: none;
+      transition: border-color .3s;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus { border-color: var(--gold); }
+    .form-group input::placeholder { color: var(--muted); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .btn-calc {
+      width: 100%;
+      padding: 15px;
+      background: linear-gradient(135deg, var(--gold), #9A6820);
+      border: none; border-radius: 8px;
+      color: #060810;
+      font-family: inherit;
+      font-size: .95rem; font-weight: 600;
+      letter-spacing: .2em;
+      cursor: pointer;
+      transition: all .3s;
+      margin-top: .5rem;
+    }
+    .btn-calc:hover {
+      background: linear-gradient(135deg, var(--gold-l), var(--gold));
+      transform: translateY(-1px);
+      box-shadow: 0 4px 24px rgba(201,168,76,.3);
+    }
+
+    /* RESULTS */
+    .results { max-width: 760px; margin: 0 auto; padding: 20px 20px 80px; display: none; }
+    .results.on { display: block; }
+
+    .r-header { text-align: center; padding: 24px 0 40px; }
+    .r-name { font-size: 1.5rem; color: var(--gold-l); margin-bottom: .3em; }
+    .r-birth { font-size: .82rem; color: var(--dim); letter-spacing: .05em; }
+
+    .btn-reset {
+      display: block; margin: 0 auto 2.5rem;
+      padding: 9px 22px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--dim);
+      font-family: inherit; font-size: .8rem;
+      letter-spacing: .15em; cursor: pointer;
+      transition: all .3s;
+    }
+    .btn-reset:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* section dividers */
+    .sec-title {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .sec-title::before, .sec-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+    .sec-title span { font-size: .8rem; letter-spacing: .2em; white-space: nowrap; }
+    .east span { color: var(--gold); }
+    .west span { color: var(--purple-l); }
+    .synth span { color: var(--dim); }
+
+    /* PILLARS */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+    .pillar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 10px;
+      text-align: center;
+      transition: border-color .3s;
+    }
+    .pillar:hover { border-color: var(--border-h); }
+    .pillar-lbl { font-size: .68rem; color: var(--muted); letter-spacing: .15em; margin-bottom: .9rem; }
+    .pillar-stem, .pillar-branch { font-size: 2rem; font-weight: 600; line-height: 1.1; }
+    .pillar-stem { margin-bottom: .1em; }
+    .pillar-branch { margin-bottom: .6em; }
+    .pillar-detail { font-size: .65rem; color: var(--muted); line-height: 1.5; }
+
+    /* element colors */
+    .el-木 { color: #5B8A52; }
+    .el-火 { color: #C84B31; }
+    .el-土 { color: #C8962A; }
+    .el-金 { color: #8B9CB5; }
+    .el-水 { color: #3D6FA8; }
+
+    /* ELEMENT BARS */
+    .elem-bars {
+      display: flex; gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+    .elem-bar { flex: 1; text-align: center; }
+    .elem-track {
+      height: 72px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      overflow: hidden;
+      margin-bottom: 5px;
+    }
+    .elem-fill { border-radius: 4px 4px 0 0; min-height: 4px; transition: height .8s ease; }
+    .elem-name { font-size: .82rem; font-weight: 600; }
+    .elem-cnt { font-size: .65rem; color: var(--muted); }
+
+    /* DAY MASTER CARD */
+    .dm-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 2rem;
+    }
+    .dm-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+    .dm-char { font-size: 2.8rem; font-weight: 600; line-height: 1; }
+    .dm-info h3 { font-size: .95rem; color: var(--gold); margin-bottom: .25em; }
+    .dm-info p { font-size: .75rem; color: var(--dim); }
+    .dm-traits { font-size: .88rem; color: var(--dim); line-height: 1.9; }
+
+    /* NUMEROLOGY CARD */
+    .num-card {
+      background: var(--card);
+      border: 1px solid rgba(139,92,246,.25);
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 2rem;
+    }
+    .num-display { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.4rem; }
+    .num-circle {
+      width: 76px; height: 76px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple), #5B21B6);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.4rem; font-family: 'Cinzel', serif; font-weight: 700;
+      color: #fff; flex-shrink: 0;
+      box-shadow: 0 0 32px rgba(139,92,246,.3);
+    }
+    .num-info h3 { font-size: .95rem; color: var(--purple-l); margin-bottom: .25em; }
+    .num-info p { font-size: .75rem; color: var(--dim); }
+    .num-calc { font-size: .7rem; color: var(--muted); font-family: 'Cinzel', serif; margin-top: .3em; }
+    .num-traits { font-size: .88rem; color: var(--dim); line-height: 1.9; }
+
+    /* SYNTHESIS */
+    .synth-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      position: relative; overflow: hidden;
+    }
+    .synth-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--purple));
+    }
+    .align-score { text-align: center; padding: .8rem 0 1.4rem; }
+    .align-lbl { font-size: .7rem; color: var(--muted); letter-spacing: .2em; margin-bottom: .6rem; }
+    .align-track {
+      width: 180px; margin: 0 auto .5rem;
+      height: 3px; background: var(--border);
+      border-radius: 2px; overflow: hidden;
+    }
+    .align-fill {
+      height: 100%; border-radius: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--purple-l));
+      transition: width 1s ease; width: 0%;
+    }
+    .align-val { font-size: .78rem; color: var(--dim); }
+    .synth-text { font-size: .88rem; color: var(--dim); line-height: 2; }
+    .synth-hi { color: var(--gold-l); font-weight: 500; }
+    .synth-hi-p { color: var(--purple-l); font-weight: 500; }
+
+    /* footer */
+    .footer {
+      text-align: center; padding: 40px 20px;
+      font-size: .72rem; color: var(--muted); letter-spacing: .1em;
+    }
+
+    /* LOGO SVG */
+    .logo-mark { width: 72px; height: 96px; margin: 0 auto 1rem; display: block; }
+    .logo-wordmark {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2rem, 7vw, 3rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--gold-l), var(--gold), var(--purple-l));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: .15em;
+      display: block;
+      margin-bottom: .2em;
+    }
+
+    @media (max-width: 560px) {
+      .pillars { grid-template-columns: repeat(2, 1fr); }
+      .pillar-stem, .pillar-branch { font-size: 1.7rem; }
+      .num-display { gap: 1rem; }
+    }
+  </style>
 </head>
 <body>
-  <nav class="navbar">
-  <div class="container nav-container">
-    <div class="logo">Sidra</div>
-    <ul class="nav-links">
-      <li><a href="index.html">Início / 首页</a></li>
-      <li><a href="about.html">Sobre nós / 关于我们</a></li>
-      <li><a href="#contact">Contato / 联系我们</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="wrap">
 
-  <header class="hero">
-    <div class="container">
-      <h1>Sidra - Agência de Publicidade / 广告代理</h1>
-      <h2>Conectamos marcas chinesas ao mercado brasileiro<br>连接中国品牌，赢在巴西市场</h2>
-      <p>Alcance, performance e criatividade para sua marca na América Latina.<br>用数据驱动的创意，帮助中国品牌打开拉美市场。</p>
-    </div>
-  </header>
-
-  <section class="services">
-    <div class="container">
-      <h2>Serviços / 服务</h2>
-      <ul>
-        <li>
-          Anúncios de performance no Google e Meta<br>
-          Google 和 Meta 效果广告投放
-        </li>
-        <li>
-          Segmentação avançada do público brasileiro<br>
-          精准定位巴西用户画像
-        </li>
-        <li>
-          Criação de criativos publicitários localizados<br>
-          本地化广告创意制作
-        </li>
-        <li>
-          Análise de dados e otimização contínua<br>
-          数据分析与持续优化
-        </li>
-      </ul>
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="logo-mark" viewBox="0 0 80 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="tg" x1="40" y1="16" x2="40" y2="102" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stop-color="#F0D48A"/>
+          <stop offset="60%" stop-color="#C9A84C"/>
+          <stop offset="100%" stop-color="#8A6020"/>
+        </linearGradient>
+      </defs>
+      <!-- halo -->
+      <circle cx="40" cy="52" r="33" stroke="#C9A84C" stroke-width="0.4" opacity="0.18"/>
+      <!-- trunk -->
+      <line x1="40" y1="88" x2="40" y2="46" stroke="url(#tg)" stroke-width="2" stroke-linecap="round"/>
+      <!-- roots -->
+      <path d="M40,88 Q28,93 17,97" stroke="#8A6020" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
+      <path d="M40,88 Q40,94 40,101" stroke="#8A6020" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
+      <path d="M40,88 Q52,93 63,97" stroke="#8A6020" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
+      <!-- branch pair 1 — gold -->
+      <path d="M40,77 Q26,73 11,69" stroke="url(#tg)" stroke-width="1.7" stroke-linecap="round"/>
+      <path d="M40,77 Q54,73 69,69" stroke="url(#tg)" stroke-width="1.7" stroke-linecap="round"/>
+      <circle cx="11" cy="69" r="2.4" fill="#C9A84C"/>
+      <circle cx="69" cy="69" r="2.4" fill="#C9A84C"/>
+      <!-- branch pair 2 — purple -->
+      <path d="M40,66 Q29,58 19,51" stroke="url(#tg)" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M40,66 Q51,58 61,51" stroke="url(#tg)" stroke-width="1.4" stroke-linecap="round"/>
+      <circle cx="19" cy="51" r="2" fill="#A78BFA"/>
+      <circle cx="61" cy="51" r="2" fill="#A78BFA"/>
+      <!-- branch pair 3 — gold -->
+      <path d="M40,56 Q33,47 27,38" stroke="url(#tg)" stroke-width="1.1" stroke-linecap="round"/>
+      <path d="M40,56 Q47,47 53,38" stroke="url(#tg)" stroke-width="1.1" stroke-linecap="round"/>
+      <circle cx="27" cy="38" r="1.7" fill="#C9A84C"/>
+      <circle cx="53" cy="38" r="1.7" fill="#C9A84C"/>
+      <!-- upper branches — purple -->
+      <path d="M40,46 Q35,36 32,26" stroke="url(#tg)" stroke-width="0.9" stroke-linecap="round"/>
+      <path d="M40,46 Q45,36 48,26" stroke="url(#tg)" stroke-width="0.9" stroke-linecap="round"/>
+      <circle cx="32" cy="25" r="1.4" fill="#A78BFA"/>
+      <circle cx="48" cy="25" r="1.4" fill="#A78BFA"/>
+      <!-- apex -->
+      <line x1="40" y1="46" x2="40" y2="20" stroke="url(#tg)" stroke-width="0.9" stroke-linecap="round"/>
+      <circle cx="40" cy="18" r="2.8" fill="#F0D48A"/>
+    </svg>
+    <span class="logo-wordmark">Sidra</span>
+    <div class="hero-sub">命理双证 · 东西印证</div>
+    <p class="hero-desc">八字洞见命格，数字映照天机<br>两套体系，相互印证</p>
+    <div class="hero-tags">
+      <span class="hero-tag">八字命理</span>
+      <span class="hero-tag">生命数字</span>
+      <span class="hero-tag">五行分析</span>
+      <span class="hero-tag">双证合参</span>
     </div>
   </section>
-<section class="contact" id="contact">
 
+  <!-- FORM -->
+  <section class="form-section" id="form-section">
+    <div class="form-title">· 输入信息 ·</div>
+    <div class="form-group">
+      <label>姓名</label>
+      <input type="text" id="inp-name" placeholder="请输入您的姓名">
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>出生日期</label>
+        <input type="date" id="inp-date">
+      </div>
+      <div class="form-group">
+        <label>出生时辰</label>
+        <select id="inp-time">
+          <option value="">不详</option>
+          <option value="23">子时 23–01</option>
+          <option value="1">丑时 01–03</option>
+          <option value="3">寅时 03–05</option>
+          <option value="5">卯时 05–07</option>
+          <option value="7">辰时 07–09</option>
+          <option value="9">巳时 09–11</option>
+          <option value="11">午时 11–13</option>
+          <option value="13">未时 13–15</option>
+          <option value="15">申时 15–17</option>
+          <option value="17">酉时 17–19</option>
+          <option value="19">戌时 19–21</option>
+          <option value="21">亥时 21–23</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn-calc" onclick="calculate()">· 推算命盘 ·</button>
+  </section>
 
-    <div class="container">
-      <h2>Fale Conosco / 联系我们</h2>
-      <p>Email: samuel295@163.com</p>
-      <p>WeChat: Hitchbull4623 ｜ WhatsApp: (+55)11-95595-2916
-</section>
+  <!-- RESULTS -->
+  <section class="results" id="results">
+    <div class="r-header">
+      <div class="r-name" id="r-name"></div>
+      <div class="r-birth" id="r-birth"></div>
+    </div>
+    <button class="btn-reset" onclick="resetForm()">← 重新推算</button>
 
+    <div class="sec-title east"><span>☯ 八字命盘</span></div>
+    <div class="pillars" id="pillars"></div>
+    <div class="elem-bars" id="elem-bars"></div>
+    <div class="dm-card" id="dm-card"></div>
 
+    <div class="sec-title west"><span>✦ 生命数字</span></div>
+    <div class="num-card" id="num-card"></div>
+
+    <div class="sec-title synth"><span>· 双证合参 ·</span></div>
+    <div class="synth-card" id="synth-card"></div>
+  </section>
+
+  <footer class="footer">Sidra · 命理双证 · 仅供参考，不构成人生决策依据</footer>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────
+const STEMS   = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+const BRANCHES= ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const STEM_EL = ['木','木','火','火','土','土','金','金','水','水'];
+const BRAN_EL = ['水','土','木','木','土','火','火','土','金','金','土','水'];
+const STEM_YY = ['阳','阴','阳','阴','阳','阴','阳','阴','阳','阴'];
+const ZODIAC  = ['鼠','牛','虎','兔','龙','蛇','马','羊','猴','鸡','狗','猪'];
+const EL_CLR  = {'木':'#5B8A52','火':'#C84B31','土':'#C8962A','金':'#8B9CB5','水':'#3D6FA8'};
+
+const DM_INFO = {
+  木:{ name:'木命日主', kw:['仁义','成长','创造','坚韧'], desc:'性格正直，富有同情心，有强烈的道德感与责任感。天生具有成长的动力，善于规划，情感丰富，重情义，在逆境中能屈能伸。' },
+  火:{ name:'火命日主', kw:['热情','直觉','领导','表达'], desc:'热情奔放，直觉敏锐，具有天生的领导魅力。思维活跃，行动力强，善于激励他人。在艺术、沟通、影响力方面往往有突出天赋。' },
+  土:{ name:'土命日主', kw:['稳重','务实','忠诚','包容'], desc:'稳重踏实，务实可靠，是天生的守护者与建设者。做事有始有终，值得信赖，擅长调和各方关系，包容心强。' },
+  金:{ name:'金命日主', kw:['果断','正直','坚韧','精准'], desc:'意志坚定，原则性强，处事果断，追求完美与精准。思维清晰，判断力强，在需要纪律与执行力的领域表现出色。' },
+  水:{ name:'水命日主', kw:['智慧','灵活','内省','感性'], desc:'智慧深邃，适应力极强，善于洞察人心。内省而敏感，富有哲思，在精神、艺术、哲学领域常有独到见解，柔中带韧。' }
+};
+
+const LP_INFO = {
+  1: { name:'领导者', el:'木', kw:['独立','领导','开创','自信'], desc:'独立自主，意志坚强，具有开拓精神。天生的领导者，勇于走在前列，不畏挑战。有时需要学习接受他人协助。' },
+  2: { name:'合作者', el:'水', kw:['协作','敏感','和谐','外交'], desc:'细腻敏感，善于协作，具有天生的外交能力。能感知他人情绪，善于倾听与调和，在团队中是不可或缺的粘合剂。' },
+  3: { name:'创造者', el:'火', kw:['创意','表达','乐观','艺术'], desc:'表达力强，乐观积极，富有创意与艺术天赋。善于社交，能用语言和艺术打动人心，充满创作冲动。' },
+  4: { name:'建设者', el:'土', kw:['稳定','实际','勤奋','秩序'], desc:'踏实稳健，注重细节，是天生的建设者。有强烈的秩序感，做事有条不紊，值得依赖，相信努力能实现任何目标。' },
+  5: { name:'探险者', el:'木', kw:['自由','变化','探索','适应'], desc:'热爱自由，充满好奇，拥抱变化。适应力超强，能在各种环境如鱼得水，不喜受限，渴望探索世界每个角落。' },
+  6: { name:'养育者', el:'金', kw:['责任','关爱','和谐','奉献'], desc:'责任感强，富有爱心，以服务他人为己任。重视家庭与社区，善于给予支持，追求和谐美好，有强烈美感。' },
+  7: { name:'智慧者', el:'水', kw:['智慧','分析','灵性','内省'], desc:'深度思考，追求真理，天生的分析者与哲学家。需要独处与内省，不喜肤浅，对神秘学、哲学有浓厚兴趣。' },
+  8: { name:'掌权者', el:'金', kw:['权威','财富','执行','成就'], desc:'雄心壮志，执行力强，天生的商业头脑。追求卓越与成就，善于整合资源，在权力、财富、组织管理方面有天赋。' },
+  9: { name:'完成者', el:'火', kw:['智慧','人道','奉献','完整'], desc:'富有智慧，悲天悯人，具有广阔的人道主义情怀。老灵魂，人生阅历丰富，愿意为更大的善而牺牲个人利益。' },
+  11:{ name:'直觉大师', el:'水', kw:['直觉','灵感','灵性','先知'], desc:'直觉力极强，富有灵感，是精神层面的使者。能接收到常人感知不到的洞见，兼具敏感与更高层次的灵性觉知。' },
+  22:{ name:'大师建造者', el:'土', kw:['宏图','实现','影响','传承'], desc:'拥有将宏伟愿景化为现实的罕见能力，结合了务实与更高层次的宇宙视野，能在物质世界建立永久性的丰功伟业。' },
+  33:{ name:'大师导师', el:'火', kw:['慈悲','奉献','启迪','爱'], desc:'最高振动频率，是无私之爱与完全奉献的化身。融合了宏图与纯粹的慈悲，极为罕见，往往承载改变世界的使命。' }
+};
+
+// ── BAZI CALC ─────────────────────────────────────────────────
+function yearPillar(year, month, day) {
+  let y = (month < 2 || (month === 2 && day < 4)) ? year - 1 : year;
+  const idx = ((y - 1984) % 60 + 600) % 60;
+  return { si: idx % 10, bi: idx % 12 };
+}
+
+function monthBranchIdx(month, day) {
+  // [gregorian-month, day-start, branch-idx]
+  const terms = [
+    [1,6,1],[2,4,2],[3,6,3],[4,5,4],[5,6,5],[6,6,6],
+    [7,7,7],[8,7,8],[9,8,9],[10,8,10],[11,7,11],[12,7,0]
+  ];
+  let bi = 11;
+  for (const [m, d, b] of terms) {
+    if (month > m || (month === m && day >= d)) bi = b;
+  }
+  return bi;
+}
+
+function monthPillar(yearSi, month, day) {
+  const bi = monthBranchIdx(month, day);
+  const monthOrder = [2,3,4,5,6,7,8,9,10,11,0,1];
+  const monthNum = monthOrder.indexOf(bi);
+  const starts = [2,4,6,8,0]; // 丙戊庚壬甲 for 寅月
+  const si = (starts[yearSi % 5] + monthNum) % 10;
+  return { si, bi };
+}
+
+function dayPillar(year, month, day) {
+  // Jan 1 2000 = 戊午日, cycleIdx=54
+  const ref = Date.UTC(2000, 0, 1);
+  const tgt = Date.UTC(year, month - 1, day);
+  const diff = Math.round((tgt - ref) / 86400000);
+  const idx = ((54 + diff) % 60 + 600) % 60;
+  return { si: idx % 10, bi: idx % 12 };
+}
+
+function hourPillar(hour, daySi) {
+  const bi = Math.floor((hour + 1) / 2) % 12;
+  const starts = [0,2,4,6,8];
+  const si = (starts[daySi % 5] + bi) % 10;
+  return { si, bi };
+}
+
+// ── NUMEROLOGY ────────────────────────────────────────────────
+function reduce(n) {
+  while (n > 9 && n !== 11 && n !== 22 && n !== 33) {
+    n = String(n).split('').reduce((a,b) => a + +b, 0);
+  }
+  return n;
+}
+
+function lifePathNum(year, month, day) {
+  const y = reduce(String(year).split('').reduce((a,b) => a + +b, 0));
+  const m = reduce(month);
+  const d = reduce(day);
+  return reduce(y + m + d);
+}
+
+// ── RENDER ────────────────────────────────────────────────────
+function calculate() {
+  const name    = document.getElementById('inp-name').value.trim() || '命主';
+  const dateVal = document.getElementById('inp-date').value;
+  const timeVal = document.getElementById('inp-time').value;
+
+  if (!dateVal) { alert('请输入出生日期'); return; }
+
+  const [year, month, day] = dateVal.split('-').map(Number);
+  const hour = timeVal === '' ? null : +timeVal;
+
+  const yP = yearPillar(year, month, day);
+  const mP = monthPillar(yP.si, month, day);
+  const dP = dayPillar(year, month, day);
+  const hP = hour !== null ? hourPillar(hour, dP.si) : null;
+
+  const pillars = [
+    { lbl:'年柱', ...yP },
+    { lbl:'月柱', ...mP },
+    { lbl:'日柱', ...dP },
+    { lbl:'时柱', ...(hP || { si:null, bi:null }) }
+  ];
+
+  // element counts
+  const elCnt = {木:0,火:0,土:0,金:0,水:0};
+  for (const p of pillars) {
+    if (p.si == null) continue;
+    elCnt[STEM_EL[p.si]]++;
+    elCnt[BRAN_EL[p.bi]]++;
+  }
+
+  const dayEl = STEM_EL[dP.si];
+  const lpn   = lifePathNum(year, month, day);
+
+  // ── header
+  document.getElementById('r-name').textContent = name;
+  const branchNames = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+  const timeStr = hour !== null
+    ? ` · ${branchNames[Math.floor((hour+1)/2)%12]}时`
+    : '';
+  document.getElementById('r-birth').textContent =
+    `${year}年${month}月${day}日${timeStr} · 生肖${ZODIAC[yP.bi]}`;
+
+  // ── pillars
+  document.getElementById('pillars').innerHTML = pillars.map(p => {
+    if (p.si == null) return `
+      <div class="pillar">
+        <div class="pillar-lbl">${p.lbl}</div>
+        <div class="pillar-stem" style="color:var(--muted);font-size:1.3rem">未知</div>
+        <div class="pillar-branch" style="color:var(--muted);font-size:1.3rem">时辰</div>
+      </div>`;
+    const se = STEM_EL[p.si], be = BRAN_EL[p.bi];
+    return `
+      <div class="pillar">
+        <div class="pillar-lbl">${p.lbl}</div>
+        <div class="pillar-stem el-${se}">${STEMS[p.si]}</div>
+        <div class="pillar-branch el-${be}">${BRANCHES[p.bi]}</div>
+        <div class="pillar-detail">${STEM_YY[p.si]}${se}<br>${be} · ${ZODIAC[p.bi]}</div>
+      </div>`;
+  }).join('');
+
+  // ── element bars
+  const maxCnt = Math.max(...Object.values(elCnt), 1);
+  document.getElementById('elem-bars').innerHTML = ['木','火','土','金','水'].map(el => {
+    const c = elCnt[el];
+    const pct = (c / maxCnt) * 100;
+    return `
+      <div class="elem-bar">
+        <div class="elem-track">
+          <div class="elem-fill" style="height:${pct}%;background:${EL_CLR[el]}"></div>
+        </div>
+        <div class="elem-name el-${el}">${el}</div>
+        <div class="elem-cnt">${c}</div>
+      </div>`;
+  }).join('');
+
+  // ── day master
+  const dm = DM_INFO[dayEl];
+  document.getElementById('dm-card').innerHTML = `
+    <div class="dm-head">
+      <div class="dm-char el-${dayEl}">${STEMS[dP.si]}</div>
+      <div class="dm-info">
+        <h3>${dm.name} · 五行属${dayEl}</h3>
+        <p>${dm.kw.join(' · ')}</p>
+      </div>
+    </div>
+    <div class="dm-traits">${dm.desc}</div>`;
+
+  // ── numerology
+  const lp = LP_INFO[lpn] || LP_INFO[9];
+  const calcShow = `${year} + ${month} + ${day} → ${lpn}`;
+  document.getElementById('num-card').innerHTML = `
+    <div class="num-display">
+      <div class="num-circle">${lpn}</div>
+      <div class="num-info">
+        <h3>${lp.name}</h3>
+        <p>${lp.kw.join(' · ')}</p>
+        <div class="num-calc">${calcShow}</div>
+      </div>
+    </div>
+    <div class="num-traits">${lp.desc}</div>`;
+
+  // ── synthesis
+  renderSynth(dayEl, lpn, dm, lp);
+
+  document.getElementById('form-section').style.display = 'none';
+  const res = document.getElementById('results');
+  res.classList.add('on');
+  res.scrollIntoView({ behavior: 'smooth' });
+}
+
+function generates(e1, e2) {
+  return { 木:'火',火:'土',土:'金',金:'水',水:'木' }[e1] === e2
+      || { 木:'火',火:'土',土:'金',金:'水',水:'木' }[e2] === e1;
+}
+
+function renderSynth(dayEl, lpn, dm, lp) {
+  const lpEl = lp.el;
+  const elScore = dayEl === lpEl ? 100 : generates(dayEl, lpEl) ? 65 : 30;
+  const common  = dm.kw.filter(k => lp.kw.includes(k));
+  const kwScore = (common.length / Math.max(dm.kw.length, 1)) * 100;
+  const align   = Math.round((elScore + kwScore) / 2);
+  const alignLbl = align >= 70 ? '高度吻合' : align >= 45 ? '部分吻合' : '互补印证';
+
+  let txt = '';
+  if (dayEl === lpEl) {
+    txt = `八字日主为<span class="synth-hi">${dayEl}</span>，生命数字所属元素亦为<span class="synth-hi">${lpEl}</span>，两套体系高度共鸣，核心特质得到双重印证。`;
+  } else {
+    const rel = generates(dayEl, lpEl) ? '相生互助，形成助力' : '形成张力，构成动能';
+    txt = `八字日主属<span class="synth-hi">${dayEl}</span>，生命数字对应<span class="synth-hi-p">${lpEl}</span>，二者${rel}。`;
+  }
+
+  if (common.length) {
+    txt += ` 两套体系共同指向：<span class="synth-hi">${common.join('、')}</span>，这是您命格中最为稳固的核心特质。`;
+  } else {
+    txt += ` 东方命理强调<span class="synth-hi">${dm.kw.slice(0,2).join('、')}</span>，西方数字揭示<span class="synth-hi-p">${lp.kw.slice(0,2).join('、')}</span>，两者相辅相成，共同构成完整的命格图景。`;
+  }
+
+  document.getElementById('synth-card').innerHTML = `
+    <div class="align-score">
+      <div class="align-lbl">双证吻合度</div>
+      <div class="align-track"><div class="align-fill" id="align-fill"></div></div>
+      <div class="align-val">${alignLbl} · ${align}%</div>
+    </div>
+    <div class="synth-text">${txt}</div>`;
+
+  setTimeout(() => {
+    const f = document.getElementById('align-fill');
+    if (f) f.style.width = align + '%';
+  }, 150);
+}
+
+function resetForm() {
+  document.getElementById('results').classList.remove('on');
+  document.getElementById('form-section').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
